@@ -1,19 +1,22 @@
-
-/*jslint white:true, devel:true*/
-/*global mx, , require, browser, console */
+// BEGIN CODE BootstrapDatepicker.widget.BootstrapDatepicker
+/*jslint white:true, nomen: true, plusplus: true */
+/*global mx, define, require, browser, devel, console */
 /*mendix */
 /*
     BootstrapDatepicker
     ========================
 
-    @file      : BootstrapDatepicker.js
-    @version   : 1.05
-    @author    : Chris de Gelder
-    @date      : 1-4-2015
-    @copyright : Chris de Gelder
-    @license   : Apache 2
-	based on http://eternicode.github.io/bootstrap-datepicker
+    @file         : BootstrapDatepicker.js
+    @version      : 1.2.0
+    @author       : Chris de Gelder
+	@contributors : Roy van der Valk
+    @date         : 05-04-2017
+    @copyright    : Chris de Gelder
+    @license      : Apache 2
+	based on https://uxsolutions.github.io/bootstrap-datepicker/
 */
+mxui.dom.addCss(require.toUrl("BootstrapDatepicker", "../css/datepicker.css"));
+mxui.dom.addCss(require.toUrl("BootstrapDatepicker", "../css/datepicker3.css"));
 // Required module list. Remove unnecessary modules, you can always get them back from the boilerplate.
 require({
     packages: [{ name: 'jquery', location: '../../widgets/BootstrapDatepicker/lib', main: 'jquery-1.11.2.min' },
@@ -28,10 +31,12 @@ require({
 	'mxui/widget/_WidgetBase', 
 	'dijit/_TemplatedMixin',
     'mxui/dom', 
-	'dojo/dom-construct', 'dojo/_base/lang', 'dojo/text',
+	'dojo/dom', 
+	'dojo/query', 
+	'dojo/dom-prop', 'dojo/dom-geometry', 'dojo/dom-class', 'dojo/dom-style', 'dojo/dom-construct', 'dojo/_base/array', 'dojo/_base/lang', 'dojo/text',
 	'dojo/_base/kernel',
     'jquery', 'dojo/text!BootstrapDatepicker/widget/template/BootstrapDatepicker.html', 'btdatepicker', 'dpengb', 'dpde', 'dpfr', 'dpnl', 'dpde'
-], function (declare, _WidgetBase, _TemplatedMixin, dom, domConstruct, lang, text, kernel, $, widgetTemplate, btdatepicker, dpengb, dpfr, dpnl, dpde) {
+], function (declare, _WidgetBase, _TemplatedMixin, dom, dojoDom, domQuery, domProp, domGeom, domClass, domStyle, domConstruct, dojoArray, lang, text, kernel, $, widgetTemplate, btdatepicker, dpengb, dpfr, dpnl, dpde) {
     'use strict';
     
     // Declare widget's prototype.
@@ -55,7 +60,7 @@ require({
             var div = dom.create('div' , { 'id' : id } );
 			this.domNode.appendChild(div);
 			this.selector = '#' + id + ' input';
-			if (this.displaytype==="range" && (this.dateattrto===null || this.dateattrto===undefined || this.dateattr===this.dateattrto)) {
+			if (this.displaytype=="range" && (this.dateattrto==null || this.dateattrto==undefined || this.dateattr==this.dateattrto)) {
 				this.displaytype = "textinput";
 				console.log("range without second date attribute provided: fallback to text input");
 			}
@@ -71,7 +76,7 @@ require({
 					groupdiv.appendChild(dom.create('input', $.extend({ 'class': 'form-control', 'type': 'text'}, ro)));
 					var span = dom.create('span', { 'class': 'input-group-addon' });
 					groupdiv.appendChild(span);
-					span.appendChild(dom.create('i', { 'class': 'glyphicon glyphicon-th' }));					
+					span.appendChild(dom.create('i', { 'class': 'glyphicon glyphicon-calendar' }));
 					break;
 				case "embedded": 
 					this.selector = '#' + id + ' .embedded';
@@ -87,10 +92,13 @@ require({
 			}
 			var locale = this.getLocale();
 			$(this.selector).datepicker({
+				format: this.accuracy=="months"?"mm-yyyy":(this.accuracy=="years"?"yyyy":"dd-mm-yyyy"),
+				startView: this.accuracy=="months"?1:(this.accuracy=="years"?2:0),
+				minViewMode: this.accuracy=="months"?1:(this.accuracy=="years"?2:0),
 				language: locale,
 				calendarWeeks: this.calendarweeks,
 				weekStart: this.weekstart,
-				todayBtn: this.todaybutton===true?"Linked":false,
+				todayBtn: this.todaybutton==true?"Linked":false,
 				clearBtn: this.clearbutton,
 				autoclose: this.autoclose,
 				daysOfWeekDisabled: this.daysofweekdisabled,
@@ -108,39 +116,55 @@ require({
 			return mx.ui.getLocale();
 		},
 		dateChanged: function (ev) {
+			var obj = this._contextObj;
 			var d = new Date(ev.date);
-			if (this._contextObj && ev.type=="changeDate" && ev.date && (!isNaN(d.getTime())) && (d.getYear()>0)) {
+			if (obj && ev.type=="changeDate" && ev.date && (!isNaN(d.getTime())) && (d.getYear()>0)) {
 				ev.date.setHours(this.defaulthours);
 				// second field for range?
 				if(ev.target.attributes.name && ev.target.attributes.name.value=="end" && this.dateattrto) {
-					this._contextObj.set(this.dateattrto, ev.date);
+					//only call when date has changed
+					if( obj.get(this.dateattrto).valueOf() != d.valueOf() ) {
+						obj.set(this.dateattrto, ev.date);
+						this._execMf(this.mfToExecute, obj.getGuid());
+					}
 				} else {
-					this._contextObj.set(this.dateattr, ev.date);
+					//only call when date has changed
+					if( obj.get(this.dateattr).valueOf() != d.valueOf() ) {
+						obj.set(this.dateattr, ev.date);
+						this._execMf(this.mfToExecute, obj.getGuid());
+					}
 				}
-				this.callmf();
 			}
 		},
 		
-		callmf: function () {
-			if (this.mfToExecute) {
-				mx.data.action({
-					params: {
-						applyto: 'selection',
-						actionname: this.mfToExecute,
-						guids: [this._contextObj.getGuid()]
+		_execMf: function (mf, guid, cb) {
+			logger.debug(this.id + "._execMf");
+			if (mf && guid) {
+				mx.ui.action(mf, {
+					progress: this.mfProgressBar,
+					progressMsg: this.mfProgressMsg,
+                    params: {
+                        applyto: "selection",
+                        guids: [guid]
+                    },
+					store: {
+						caller: this.mxform
 					},
-					callback: function (obj) {
-					},
-					error: function (error) {
-						console.log(this.id + ': An error occurred while executing microflow: ' + error.description);
-					}
-				}, this);		
+                    callback: lang.hitch(this, function (objs) {
+                        if (cb && typeof cb === "function") {
+                            cb(objs);
+                        }
+                    }),
+                    error: function (error) {
+                        console.debug(error.description);
+                    }
+				}, this);
 			}
 		},
 		update: function (obj, callback) {
 
             this._contextObj = obj;
-            this.resetSubscriptions();
+            this._resetSubscriptions();
             this._updateRendering(obj);
 			
             if (callback) {
@@ -234,7 +258,7 @@ require({
 			
 		},		
 		
-       resetSubscriptions: function () {
+       _resetSubscriptions: function () {
 			var objHandle = null, 
 				attrHandle = null, 
 				validationHandle = null,
@@ -286,4 +310,4 @@ require({
     });
 });
 
-
+// END CODE BootstrapDatepicker.widget.BootstrapDatepicker;

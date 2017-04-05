@@ -15,6 +15,16 @@
         <enumerationValue key="range">Range</enumerationValue>
       </enumerationValues>
     </property>
+	<property defaultValue="days" key="accuracy" type="enumeration">
+      <caption>Accuracy</caption>
+      <category>Display</category>
+      <description>Accuracy of the date input and the selector</description>
+      <enumerationValues>
+        <enumerationValue key="days">Days</enumerationValue>
+        <enumerationValue key="months">Months</enumerationValue>
+        <enumerationValue key="years">Years</enumerationValue>
+      </enumerationValues>
+    </property>
     <property defaultValue="0" key="weekstart" type="integer">
       <caption>Week starts</caption>
       <category>Display</category>
@@ -75,10 +85,25 @@
       <description>Time added to date</description>
     </property>
     <property key="mfToExecute" required="false" type="microflow">
-      <caption>On change</caption>
+      <caption>On change microflow</caption>
       <category>Events</category>
-      <description>Onchange microflow</description>
+	  <description>Microflow called when date changed</description>
       <returnType type="Void"/>
+    </property>
+	<property defaultValue="none" key="mfProgressBar" type="enumeration">
+      <caption>Show progress bar</caption>
+      <category>Events</category>
+	  <description>Type of progress bar shown</description>
+      <enumerationValues>
+        <enumerationValue key="none">None</enumerationValue>
+        <enumerationValue key="nonmodal">Non-blocking</enumerationValue>
+        <enumerationValue key="modal">Blocking</enumerationValue>
+      </enumerationValues>
+    </property>
+	<property defaultValue="" key="mfProgressMsg" required="false" type="string">
+      <caption>Progress message</caption>
+      <category>Events</category>
+	  <description>Message shown in progress bar</description>
     </property>
     <property defaultValue="" key="daysofweekdisabled" required="false" type="string">
       <caption>Disabled days</caption>
