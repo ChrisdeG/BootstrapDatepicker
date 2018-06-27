@@ -181,6 +181,8 @@ define([
                         this.mfRunning = true;
                         var pid = mx.ui.showProgress("", true);
                         mx.data.action({
+                            progress: this.mfProgressBar,
+                            progressMsg: this.mfProgressMsg,
                             params: {
                                 applyto: 'selection',
                                 actionname: this.mfToExecute,

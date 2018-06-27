@@ -108,8 +108,23 @@
     <property key="mfToExecute" required="false" type="microflow">
       <caption>On change</caption>
       <category>Events</category>
-      <description>Onchange microflow</description>
+      <description>On change microflow</description>
       <returnType type="Void"/>
+    </property>
+    <property defaultValue="none" key="mfProgressBar" type="enumeration">
+      <caption>Show progress bar</caption>
+      <category>Events</category>
+      <description>Type of progress bar shown</description>
+      <enumerationValues>
+        <enumerationValue key="none">None</enumerationValue>
+        <enumerationValue key="nonmodal">Non-blocking</enumerationValue>
+        <enumerationValue key="modal">Blocking</enumerationValue>
+      </enumerationValues>
+    </property>
+    <property defaultValue="" key="mfProgressMsg" required="false" type="string">
+      <caption>Progress message</caption>
+      <category>Events</category>
+      <description>Message shown in progress bar</description>
     </property>
     <property defaultValue="false" key="preventDoublerunning" type="boolean">
       <caption>Disallow concurrent</caption>
