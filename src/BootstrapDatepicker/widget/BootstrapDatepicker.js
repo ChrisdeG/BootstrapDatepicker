@@ -196,22 +196,21 @@ define([
                 if (this.preventDoublerunning) {
                     if (this.mfRunning === false) {
                         this.mfRunning = true;
-                        var pid = mx.ui.showProgress("", true);
-                        mx.data.action({
+                        mx.ui.action(this.mfToExecute, {
                             progress: this.mfProgressBar,
                             progressMsg: this.mfProgressMsg,
                             params: {
                                 applyto: 'selection',
-                                actionname: this.mfToExecute,
                                 guids: [this._contextObj.getGuid()]
+                            },
+                            store: {
+                                caller: this.mxform
                             },
                             callback: dojo.hitch(this, function(obj) {
                                 this.mfRunning = false;
-                                mx.ui.hideProgress(pid);
                             }),
                             error: dojo.hitch(this, function(error) {
                                 this.mfRunning = false;
-                                mx.ui.hideProgress(pid);
                                 logger.debug(this.id + ': An error occurred while executing microflow: ' + error.description);
                             })
                         }, this);
@@ -219,11 +218,15 @@ define([
                         logger.debug('skip onChange microflow because that is still running');
                     }
                 } else {
-                    mx.data.action({
+                    mx.ui.action(this.mfToExecute, {
+                        progress: this.mfProgressBar,
+                        progressMsg: this.mfProgressMsg,
                         params: {
                             applyto: 'selection',
-                            actionname: this.mfToExecute,
                             guids: [this._contextObj.getGuid()]
+                        },
+                        store: {
+                            caller: this.mxform
                         },
                         callback: dojo.hitch(this, function(obj) {}),
                         error: dojo.hitch(this, function(error) {
