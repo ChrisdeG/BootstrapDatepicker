@@ -86,7 +86,7 @@ define([
                     });
                     groupdiv.appendChild(span);
                     span.appendChild(dom.create('i', {
-                        'class': 'glyphicon glyphicon-th'
+                        'class': 'glyphicon glyphicon-calendar'
                     }));
                     break;
                 case "embedded":
