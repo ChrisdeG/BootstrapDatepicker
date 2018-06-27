@@ -244,7 +244,14 @@ define([
                 }
                 if (this.displaytype == "range" && this.dateattrto) {
                     var date2 = new Date(obj.get(this.dateattrto));
-                    $(this.selector).datepicker('setDates', [date1, date2]);
+                    // undocumented feature to set start end: https://groups.google.com/forum/#!msg/bootstrap-datepicker/9q5n35QCpgg/sznmzU7-yaYJ
+                    if (date1) {
+                        $(this.selector).find("#startTime").datepicker("update", date1);
+                    }
+                    if (date2) {
+                        $(this.selector).find("#endTime").datepicker("update", date2);
+                    }
+                    $(this.selector).data("datepicker").updateDates();
                 } else {
                     if (date1 != this.date1) {
                         logger.debug('selector', this.selector);
