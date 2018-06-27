@@ -15,6 +15,26 @@
         <enumerationValue key="range">Range</enumerationValue>
       </enumerationValues>
     </property>
+    <property defaultValue="auto" key="verticalorientation" type="enumeration">
+      <caption>Vertical orientation</caption>
+      <category>Display</category>
+      <description>Vertical orientation of the selector relative to the input field</description>
+      <enumerationValues>
+        <enumerationValue key="auto">Auto</enumerationValue>
+        <enumerationValue key="bottom">Above</enumerationValue>
+        <enumerationValue key="top">Below</enumerationValue>
+      </enumerationValues>
+    </property>
+    <property defaultValue="auto" key="horizontalorientation" type="enumeration">
+      <caption>Horizontal orientation</caption>
+      <category>Display</category>
+      <description>Horizontal orientation of the selector relative to the input field</description>
+      <enumerationValues>
+        <enumerationValue key="auto">Auto</enumerationValue>
+        <enumerationValue key="left">Left</enumerationValue>
+        <enumerationValue key="right">Right</enumerationValue>
+      </enumerationValues>
+    </property>
     <property defaultValue="0" key="weekstart" type="integer">
       <caption>Week starts</caption>
       <category>Display</category>

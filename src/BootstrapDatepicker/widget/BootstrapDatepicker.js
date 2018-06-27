@@ -116,6 +116,7 @@ define([
                     break;
             }
             var dateFormat = this.getDateFormat();
+            var orientation = this.getOrientation();
             $(this.selector).datepicker({
                 language: dojo.locale,
                 calendarWeeks: this.calendarweeks,
@@ -125,6 +126,7 @@ define([
                 autoclose: this.autoclose,
                 daysOfWeekDisabled: this.daysofweekdisabled,
                 todayHighlight: this.todayhighlight,
+                orientation: orientation,
                 startDate: this.limitstart,
                 endDate: this.limitend,
                 enableOnReadonly: false,
@@ -146,6 +148,21 @@ define([
                 dateFormat = this.displayFormat;
             }
             return dateFormat;
+        },
+
+        getOrientation: function() {
+            var orientation = "";
+            if (this.verticalorientation=="auto" && this.horizontalorientation=="auto") {
+                orientation = "auto";
+            } else {
+                if (this.verticalorientation!="auto") {
+                    orientation = this.verticalorientation;
+                }
+                if (this.horizontalorientation!="auto") {
+                    orientation = orientation+" "+this.horizontalorientation;
+                }
+            }
+            return orientation;
         },
 
         dateChanged: function(ev) {
