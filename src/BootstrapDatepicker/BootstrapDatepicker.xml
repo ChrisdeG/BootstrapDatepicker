@@ -21,8 +21,8 @@
       <description>Vertical orientation of the selector relative to the input field</description>
       <enumerationValues>
         <enumerationValue key="auto">Auto</enumerationValue>
-        <enumerationValue key="bottom">Above</enumerationValue>
-        <enumerationValue key="top">Below</enumerationValue>
+        <enumerationValue key="top">Above</enumerationValue>
+        <enumerationValue key="bottom">Below</enumerationValue>
       </enumerationValues>
     </property>
     <property defaultValue="auto" key="horizontalorientation" type="enumeration">
