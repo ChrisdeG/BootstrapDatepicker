@@ -2,7 +2,7 @@
 <widget xmlns="http://www.mendix.com/widget/1.0/" id="BootstrapDatepicker.widget.BootstrapDatepicker" needsEntityContext="true">
   <name>Bootstrap datepicker</name>
   <description>Bootstrap datepicker.</description>
-  <icon>iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAEwElEQVR42pVVS0xcZRQ+5z7nBVSBAQJlSHRhigkxmLYxJKTD0xXbuuvOaE2ERtKuXFCKcUMbE8WQuOjGsNWk4T0mXaitKfGxAKouKIYpMDxmKAx35t57PP9/516gPtr+yc8589/zn+983zn3gtAGUVDATFQn4Hrf9QyU1o07N6qW08vwPOtM/Rnt2tvXHpd+usN3huMP0w8BCCzEHpzQEloSCWF1eLW6FERdn7VnwqYJIU1sA0zeuqrJh0XHBsspglW0IG8XoFAswtQHKXnXcR1q+rgpQ0hgr9gphD6Yh7cgib8BjbV9iT7A1Qf9+FpvFcRMk2KmgWwhbOryWd4q4hPLoidWQVh4OLVNn7SOyrsuuXT5h/eRmvnH9xAAXFAzCIntRtAUBXRNg73TG1D9ahSipgERw4CwrvG56jGwHcgXbTgoFGDfKsDm7wdQtlrFzBywXRdWKh+BU0kC4DsP4DwkFR3J1DUMcfKwoVPE0DHESTkxhdg3ObkAFww4CVq2Q3WhJmx+qZWTAt396y6eq2ljYIs+XxhDt8gAP/oMzkISdCBDUzmRBqZM6oGZukqmqqKmqqAqUgVyXELbcejd5kF8/eVWyOQz9OfuH/hG/E3Y2N+ki99eRCpy5H0foBUuMAAg99AQSblawwMCgxPrqgKMDYhei4i4gQ5BY+wV9hX4ZeNXaCrz/IXHPzNFoSPvByxRoifxxaVrl94jhQgVTsEqqIpCKrtsQWFfHnPuEgDnJ3QJuJ0uuuw4/MfhM7bALoELCA7A7U9vj2F7e/uHqVTqlrjIO5ii//CD3xLlOOK/+Mlkst8HuClo+/RdrkTEFHhKDJ4gYTWWTJyLxazAtu3gmbDFHPcoRKCFjirp6OgYkADz8/O3fGSL5/rw8JBM08T19XWoqakhtlhRUSHOZQ2hUAh3d3eptrY2iNm8H8XyhAvljW7AgAH6fYCAgSt1dGWVL8KgkFNk9ccZdHZ2egzm5uYCBtlsFkR1XBVubGxAPB4ntlheXg6CnWAg2HHciZjMTzEsa3QkA5DzgALAYzA7Oxs0WcjAiSgajeL+/j6wJbao3bsHh6mUJ1Eyifa5cydiDtYMNCsIjPIjibq6uo4AyNMIDw4OgC/RqVOnhM7AlthienQUKrkPAmArm8W6K1dOxGSXwxiJu8A7mLru7m4PYGZmJuhBCUBcgtJlaSUA+2IxANQNDJyIyS1HRHIIxx0ZI0gwwIAPEDAQOguJIpGIZMOW2KLKElkliUyWyGGJjsfk0yayPCck6unp8RhMT08HTc7lcsCbqqurMZPJQFVVFbHFsrKyE00+HlNZWUk7CxUYa7AhdtoOmnwc4KY/gg5/csXWdR2K/I/Etyp/k3wZfV+Mqz/STy8B0Nvb60k0NTUVSLS3twe8iSvHra0tWR1bjMVicuYFA37pkEElk9J7QAwiziCdTlM+nxcvptvX1/dOAMCVSInEC8QMiCvHEgNii8cYEPvyWySSlhjI4lZWVkQR1NDQAIODg2MTExMfSYDJyclgiv5vPStmaWkJ6uvrYWRk5Ovx8fHL3LPsPyR6ka/p0zFra2vu0NDQV1z5VWa9I3vBM3y+paXl7DPLf461vb29s7i4+A3LnPPP/gZ97gy7zDSi4QAAAABJRU5ErkJggg==</icon>
+  <icon>iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAZdEVYdFNvZnR3YXJlAHBhaW50Lm5ldCA0LjAuMTZEaa/1AAABj0lEQVQ4T62SPUvDUBSG0zQt/RpFEXQWBXFS3OrkonSRCE6iRccWi0oniyKtX0N1UcEiont3RTdHf4O/QPwAseqgz1tvNRkiDgaevO89956Tk5NYpVLJdl03HIvFuhOJRKe84ziDf4kp15JJp9NOKBRat227mEql2vD3yWSyHS0HxBaV0yygG9c0GydwBpdwDje/xcLhcEYPbxUoELyDR/iAW6OBMXJmmgV0Y7FA8MXw7vFv0DD+1SDfIGfWV0CDMbOoSAXxnIYmT8tjDBKbdqLRaK8KfA+RRSGgQD6gQB97We8QNYNdJcO1UXEBT/AAz3AKih+S8/UKrQKeDjakgniOtQbXhC5GTAd6Bf8Q2RzVz8LBY3TI+C1vAc7NKc7ZCbx/iJBlw+VgHT8p8DV03vgKuqIzaB7+f4ir6BJ6JYVlfB3WTLwG+ya+ifqHqKrmX69KoYN4MRKJ9GuNn6KLjDydDLP2DzHoR4rH413yJI+D9yv8dMBTBkjchjIcGdX3PgDF5fegavwORXosy7I/AXUVpbvkG+aKAAAAAElFTkSuQmCC</icon>
   <properties>
     <property defaultValue="textinput" key="displaytype" type="enumeration">
       <caption>Type</caption>
@@ -13,6 +13,26 @@
         <enumerationValue key="component">Component</enumerationValue>
         <enumerationValue key="embedded">Embedded</enumerationValue>
         <enumerationValue key="range">Range</enumerationValue>
+      </enumerationValues>
+    </property>
+    <property defaultValue="auto" key="verticalorientation" type="enumeration">
+      <caption>Vertical orientation</caption>
+      <category>Display</category>
+      <description>Vertical orientation of the selector relative to the input field</description>
+      <enumerationValues>
+        <enumerationValue key="auto">Auto</enumerationValue>
+        <enumerationValue key="top">Above</enumerationValue>
+        <enumerationValue key="bottom">Below</enumerationValue>
+      </enumerationValues>
+    </property>
+    <property defaultValue="auto" key="horizontalorientation" type="enumeration">
+      <caption>Horizontal orientation</caption>
+      <category>Display</category>
+      <description>Horizontal orientation of the selector relative to the input field</description>
+      <enumerationValues>
+        <enumerationValue key="auto">Auto</enumerationValue>
+        <enumerationValue key="left">Left</enumerationValue>
+        <enumerationValue key="right">Right</enumerationValue>
       </enumerationValues>
     </property>
     <property defaultValue="0" key="weekstart" type="integer">
@@ -108,8 +128,23 @@
     <property key="mfToExecute" required="false" type="microflow">
       <caption>On change</caption>
       <category>Events</category>
-      <description>Onchange microflow</description>
+      <description>On change microflow</description>
       <returnType type="Void"/>
+    </property>
+    <property defaultValue="none" key="mfProgressBar" type="enumeration">
+      <caption>Show progress bar</caption>
+      <category>Events</category>
+      <description>Type of progress bar shown</description>
+      <enumerationValues>
+        <enumerationValue key="none">None</enumerationValue>
+        <enumerationValue key="nonmodal">Non-blocking</enumerationValue>
+        <enumerationValue key="modal">Blocking</enumerationValue>
+      </enumerationValues>
+    </property>
+    <property defaultValue="" key="mfProgressMsg" required="false" type="string">
+      <caption>Progress message</caption>
+      <category>Events</category>
+      <description>Message shown in progress bar</description>
     </property>
     <property defaultValue="false" key="preventDoublerunning" type="boolean">
       <caption>Disallow concurrent</caption>
