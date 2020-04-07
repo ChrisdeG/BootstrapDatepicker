@@ -288,7 +288,7 @@ define([
 				var validDateEntityName = this.validdateentity.split('/')[1];
 				var dateReference = this.validdateentity.split('/')[0];
 
-				if (this._contextObj) {
+				if (this._contextObj && mx.data) {
 					var xpath = "//" + validDateEntityName + "[" + dateReference + "='" + this._contextObj.getGuid() + "']";
 					mx.data.get({
 						xpath: xpath,
